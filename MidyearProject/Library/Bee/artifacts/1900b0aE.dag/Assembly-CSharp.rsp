@@ -359,6 +359,7 @@
 "Assets/Scripts/MazeCell.cs"
 "Assets/Scripts/MazeGameManager.cs"
 "Assets/Scripts/MazeGenerator.cs"
+"Assets/Scripts/Monster.cs"
 "Assets/Scripts/MouseLook.cs"
 "Assets/Scripts/NPCMovement.cs"
 "Assets/Scripts/PlayerCam.cs"

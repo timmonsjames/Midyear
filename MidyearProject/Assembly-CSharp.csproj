@@ -70,6 +70,7 @@
     <Compile Include="Assets\Scripts\MazeCell.cs" />
     <Compile Include="Assets\Scripts\NPCMovement.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\Monster.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\MonsterMutant 7\Stand\Standard_Two_Sided .shader" />

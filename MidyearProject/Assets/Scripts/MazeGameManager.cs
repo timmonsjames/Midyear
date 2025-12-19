@@ -62,7 +62,7 @@ public class MazeGameManager : MonoBehaviour
     public void Reset()
     {
         Destroy(npcInstance);
-        for (int i = 0; i < pathList.Count; i++)
+        for (int i = pathList.Count - 1; i >= 0; i--)
         {
             GameObject f = pathList[i];
             pathList.Remove(f);
