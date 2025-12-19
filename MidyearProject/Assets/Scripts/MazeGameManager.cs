@@ -13,6 +13,8 @@ public class MazeGameManager : MonoBehaviour
     public MazeGenerator mazeGenerator;
     public AStarPathfinder pathfinder;
     public Monster monster;
+    public Transform player;
+    public Transform playerLOS;
 
     public GameObject npcPrefab;
     public GameObject goalPrefab;
@@ -44,7 +46,8 @@ public class MazeGameManager : MonoBehaviour
         goalInstance = mazeGenerator.EndCube;
 
         // 5. Give path to NPC movement script
-        npcInstance.GetComponent<NPCMovement>().SetPath(path);
+        monster = npcInstance.GetComponent<Monster>();
+        monster.SetPath(path);
 
         // 6. Visualize the path
         VisualizePath(path);
@@ -73,6 +76,6 @@ public class MazeGameManager : MonoBehaviour
 
     void Update()
     {
-        
+        monster.UpdatePlayerLOS(player.position - playerLOS.position);
     }
 }
