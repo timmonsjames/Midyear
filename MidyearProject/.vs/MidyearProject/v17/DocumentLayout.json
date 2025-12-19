@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\timmo\\MidyearProject\\MidyearProject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|c:\\users\\timmo\\midyearproject\\midyearproject\\assets\\scripts\\monster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\monster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|C:\\Users\\timmo\\MidyearProject\\MidyearProject\\assets\\scripts\\mazegamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mazegamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|c:\\users\\timmo\\midyearproject\\midyearproject\\assets\\scripts\\monster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\monster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|C:\\Users\\timmo\\MidyearProject\\MidyearProject\\assets\\scripts\\npcmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -34,7 +34,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
@@ -50,13 +50,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Monster.cs",
               "DocumentMoniker": "C:\\Users\\timmo\\MidyearProject\\MidyearProject\\Assets\\Scripts\\Monster.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Monster.cs",
               "ToolTip": "C:\\Users\\timmo\\MidyearProject\\MidyearProject\\Assets\\Scripts\\Monster.cs",
               "RelativeToolTip": "Assets\\Scripts\\Monster.cs",
-              "ViewState": "AgIAAIoAAAAAAAAAAAAQwKAAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAAAcwJ8AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-17T17:03:39.624Z",
               "EditorCaption": ""
@@ -87,13 +87,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "MazeGameManager.cs",
               "DocumentMoniker": "C:\\Users\\timmo\\MidyearProject\\MidyearProject\\Assets\\Scripts\\MazeGameManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\MazeGameManager.cs",
               "ToolTip": "C:\\Users\\timmo\\MidyearProject\\MidyearProject\\Assets\\Scripts\\MazeGameManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\MazeGameManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAADkAAAAAAAAAAAAYwEsAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-17T17:11:36.323Z",
               "EditorCaption": ""

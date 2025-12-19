@@ -12,6 +12,7 @@ public class MazeGameManager : MonoBehaviour
 {
     public MazeGenerator mazeGenerator;
     public AStarPathfinder pathfinder;
+    public Monster monster;
 
     public GameObject npcPrefab;
     public GameObject goalPrefab;
@@ -68,5 +69,10 @@ public class MazeGameManager : MonoBehaviour
             pathList.Remove(f);
             Destroy(f);
         }
+    }
+
+    void Update()
+    {
+        
     }
 }
