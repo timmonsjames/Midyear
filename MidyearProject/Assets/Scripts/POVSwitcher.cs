@@ -11,6 +11,7 @@ public class POVSwitchController : MonoBehaviour
     public DroneMovement droneController;
 
     private bool isDroneView = false;
+    public DroneMouseLook droneMouseLook;
 
     void Start()
     {
@@ -30,23 +31,24 @@ public class POVSwitchController : MonoBehaviour
 
     void SetPlayerView()
     {
-        isDroneView = false;
-
         playerCamera.enabled = true;
         droneCamera.enabled = false;
 
         playerController.canControl = true;
         droneController.canControl = false;
+
+        droneMouseLook.canLook = false;
     }
 
     void SetDroneView()
     {
-        isDroneView = true;
-
         playerCamera.enabled = false;
         droneCamera.enabled = true;
 
         playerController.canControl = false;
         droneController.canControl = true;
+
+        droneMouseLook.canLook = true;
     }
+
 }

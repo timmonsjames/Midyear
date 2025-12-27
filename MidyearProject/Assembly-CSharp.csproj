@@ -67,7 +67,9 @@
     <Compile Include="Assets\Scripts\CameraSwap.cs" />
     <Compile Include="Assets\Scripts\MazeGameManager.cs" />
     <Compile Include="Assets\Scripts\MouseLook.cs" />
+    <Compile Include="Assets\Scripts\DroneLook.cs" />
     <Compile Include="Assets\Scripts\MazeGenerator.cs" />
+    <Compile Include="Assets\Scripts\PlayerLook.cs" />
     <Compile Include="Assets\Scripts\AStarPathfinder.cs" />
     <Compile Include="Assets\Scripts\MazeCell.cs" />
     <Compile Include="Assets\Scripts\NPCMovement.cs" />
