@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public bool canControl = true;
 
     public CharacterController controller;
     public float speed = 12f;
@@ -20,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!canControl) return;
+
         controller = GetComponent<CharacterController>();
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 

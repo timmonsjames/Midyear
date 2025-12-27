@@ -356,6 +356,7 @@
 "Assets/PBR Racing Drone/Scripts/DroneAnimator.cs"
 "Assets/Scripts/AStarPathfinder.cs"
 "Assets/Scripts/CameraSwap.cs"
+"Assets/Scripts/DroneMovement.cs"
 "Assets/Scripts/MazeCell.cs"
 "Assets/Scripts/MazeGameManager.cs"
 "Assets/Scripts/MazeGenerator.cs"
@@ -364,6 +365,7 @@
 "Assets/Scripts/NPCMovement.cs"
 "Assets/Scripts/PlayerCam.cs"
 "Assets/Scripts/PlayerMovement.cs"
+"Assets/Scripts/POVSwitcher.cs"
 -langversion:9.0
 /deterministic
 /optimize+
