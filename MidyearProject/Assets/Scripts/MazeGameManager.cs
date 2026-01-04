@@ -34,6 +34,7 @@ public class MazeGameManager : MonoBehaviour
         if (path == null || path.Count == 0)
         {
             Debug.LogWarning("No path found, cannot start game.");
+            mazeGenerator.ResetEverything();
             return;
         }
 
