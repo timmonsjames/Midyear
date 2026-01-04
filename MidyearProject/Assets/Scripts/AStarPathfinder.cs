@@ -17,9 +17,9 @@ public class AStarPathfinder : MonoBehaviour
     // Start is called before the first frame update
     public List<MazeCell> FindPath()
     {
-        for(int i = 0; i < mazeG.width; i++)
+        for (int i = 0; i < mazeG.width; i++)
         {
-            for(int j = 0; j < mazeG.height; j++)
+            for (int j = 0; j < mazeG.height; j++)
             {
                 mazeG.cells[i, j].gCost = int.MaxValue;
                 mazeG.cells[i, j].hCost = 0;

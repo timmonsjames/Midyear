@@ -60,12 +60,16 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\2022.3.62f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.Properties.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\POVSwitcher.cs" />
+    <Compile Include="Assets\Scripts\DroneMovement.cs" />
     <Compile Include="Assets\Scripts\PlayerCam.cs" />
     <Compile Include="Assets\PBR Racing Drone\Scripts\DroneAnimator.cs" />
     <Compile Include="Assets\Scripts\CameraSwap.cs" />
     <Compile Include="Assets\Scripts\MazeGameManager.cs" />
     <Compile Include="Assets\Scripts\MouseLook.cs" />
+    <Compile Include="Assets\Scripts\DroneLook.cs" />
     <Compile Include="Assets\Scripts\MazeGenerator.cs" />
+    <Compile Include="Assets\Scripts\PlayerLook.cs" />
     <Compile Include="Assets\Scripts\AStarPathfinder.cs" />
     <Compile Include="Assets\Scripts\MazeCell.cs" />
     <Compile Include="Assets\Scripts\NPCMovement.cs" />
