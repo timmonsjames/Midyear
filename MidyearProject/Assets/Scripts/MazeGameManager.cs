@@ -48,8 +48,11 @@ public class MazeGameManager : MonoBehaviour
 
         // 5. Give path to NPC movement script
         monster = npcInstance.GetComponent<Monster>();
+        monster.manager = this;
+        monster.generator = mazeGenerator;
         monster.SetPath(path);
-
+        List<MazeCell> mainNodes = mazeGenerator.GetMainNodes();
+        monster.SetMainNodes(mainNodes[0], mainNodes[1], mainNodes[2], mainNodes[3]);
         // 6. Visualize the path
         VisualizePath(path);
     }
@@ -78,5 +81,22 @@ public class MazeGameManager : MonoBehaviour
     void Update()
     {
         monster.UpdatePlayerLOS(player.position - playerLOS.position);
+    }
+
+    public void UpdatePathfinding(Vector2Int goalPos)
+    {
+        for (int i = pathList.Count - 1; i >= 0; i--)
+        {
+            GameObject f = pathList[i];
+            pathList.Remove(f);
+            Destroy(f);
+        }
+        if(monster.currentIndex >= monster.mazeCellPath.Count)
+            monster.currentIndex = monster.mazeCellPath.Count - 1;
+        mazeGenerator.startPos = new Vector2Int(monster.mazeCellPath[monster.currentIndex].x, monster.mazeCellPath[monster.currentIndex].y);
+        mazeGenerator.endPos = goalPos;
+        List<MazeCell> path = pathfinder.FindPath();
+        monster.SetPath(path);
+        VisualizePath(path);
     }
 }

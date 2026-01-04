@@ -31,9 +31,9 @@ public class MazeGenerator : MonoBehaviour
         cells = new MazeCell[width, height];
         for (int i = 0; i < width; i++)
         {
-            for(int j = 0; j < height; j++)
+            for (int j = 0; j < height; j++)
             {
-                cells[i, j] = new MazeCell(i, j, new Vector3(i * cellLength,0, j * cellLength));
+                cells[i, j] = new MazeCell(i, j, new Vector3(i * cellLength, 0, j * cellLength));
             }
         }
         GenerateMaze();
@@ -43,9 +43,11 @@ public class MazeGenerator : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) || (Player.transform.position - EndCube.transform.position).magnitude < 2)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            ResetEverything();
+            //ResetEverything();
+            //endPos = new Vector2Int(Random.Range(0, width - 1), Random.Range(0, height - 1));
+            //gameManager.UpdatePathfinding(endPos);
         }
     }
 
@@ -68,8 +70,7 @@ public class MazeGenerator : MonoBehaviour
         CreateGrid();
         visitedCells[0, 0] = true;
         Generate(0f, 0f);
-        //endPos = CarveExit();
-        endPos = new Vector2Int(roomX + 1, roomY + 1);
+        CarveExit();
         CarveOutPlayerRoom();
         CarveOutPaths();
         startPos = RandomizePlayer();
@@ -77,22 +78,22 @@ public class MazeGenerator : MonoBehaviour
     }
 
     void CreateGrid()
-    {   
+    {
         Vector3 pos = Vector3.zero;
         pos.y = wallSize / 2;
-        for(int i = -1; i < width; i++)
+        for (int i = -1; i < width; i++)
         {
-            for(int j = -1; j < width; j++)
+            for (int j = -1; j < width; j++)
             {
                 pos.x = i * cellLength;
                 pos.z = j * cellLength;
-                if(j != -1)
+                if (j != -1)
                 {
-                    CreateWall(1f, cellLength, pos + new Vector3(cellLength/2, 0, 0));
+                    CreateWall(1f, cellLength, pos + new Vector3(cellLength / 2, 0, 0));
                 }
-                if(i != -1)
+                if (i != -1)
                 {
-                    CreateWall(cellLength, 1f, pos + new Vector3(0, 0, cellLength/2));
+                    CreateWall(cellLength, 1f, pos + new Vector3(0, 0, cellLength / 2));
                 }
             }
         }
@@ -126,22 +127,22 @@ public class MazeGenerator : MonoBehaviour
     }
 
     List<Vector2Int> UncheckedNeighbors(int x, int y)
-        {
-            List<Vector2Int> l = new List<Vector2Int>();
-            if (x < width - 1)
-                if (!visitedCells[x+1, y])
-                    l.Add(new Vector2Int(x + 1, y));
-            if (x > 0)
-                if (!visitedCells[x-1, y])
-                    l.Add(new Vector2Int(x - 1, y));
-            if(y < height - 1)
-                if (!visitedCells[x, y+1])
-                    l.Add(new Vector2Int(x, y+1));
-            if (y > 0)
-                if (!visitedCells[x, y-1])
-                    l.Add(new Vector2Int(x, y - 1));
-            return l;
-        }
+    {
+        List<Vector2Int> l = new List<Vector2Int>();
+        if (x < width - 1)
+            if (!visitedCells[x + 1, y])
+                l.Add(new Vector2Int(x + 1, y));
+        if (x > 0)
+            if (!visitedCells[x - 1, y])
+                l.Add(new Vector2Int(x - 1, y));
+        if (y < height - 1)
+            if (!visitedCells[x, y + 1])
+                l.Add(new Vector2Int(x, y + 1));
+        if (y > 0)
+            if (!visitedCells[x, y - 1])
+                l.Add(new Vector2Int(x, y - 1));
+        return l;
+    }
     void RemoveWall(float x1, float y1, float x2, float y2)
     {
         Vector3 midpoint = new Vector3((x1 + x2) / 2, wallSize / 2, (y1 + y2) / 2);
@@ -150,19 +151,19 @@ public class MazeGenerator : MonoBehaviour
         for (int i = walls.Count - 1; i >= 0; i--)
         {
             GameObject wall = walls[i];
-            if((wall.transform.position - midpoint).magnitude < minDistance)
+            if ((wall.transform.position - midpoint).magnitude < minDistance)
             {
                 choppedWall = wall;
                 minDistance = (wall.transform.position - midpoint).magnitude;
             }
-        }   
+        }
         walls.Remove(choppedWall);
         Destroy(choppedWall);
     }
 
     void ClearMaze()
     {
-        for(int i = walls.Count - 1; i>=0; i--)
+        for (int i = walls.Count - 1; i >= 0; i--)
         {
             GameObject wall = walls[i];
             walls.Remove(wall);
@@ -181,7 +182,7 @@ public class MazeGenerator : MonoBehaviour
     void CarveExtras()
     {
         int h = Mathf.FloorToInt(3 * height / 4);
-        for(int i = Mathf.FloorToInt(width / 3); i <= Mathf.FloorToInt(2 * width / 3); i++)
+        for (int i = Mathf.FloorToInt(width / 3); i <= Mathf.FloorToInt(2 * width / 3); i++)
         {
             if (!cells[i, h].CheckDirection(new Vector2Int(1, 0)))
             {
@@ -190,17 +191,17 @@ public class MazeGenerator : MonoBehaviour
                 RemoveWall(i * cellLength, h * cellLength, (i + 1) * cellLength, h * cellLength);
             }
         }
-        
+
     }
     void CarveOutPlayerRoom()
     {
-        
+
         for (int j = 0; j <= 2; j++)
         {
             for (int i = 0; i <= 2; i++)
             {
                 //Clear out Center
-                if(i != 2) {
+                if (i != 2) {
                     if (!cells[roomX + i, roomY + j].CheckDirection(new Vector2Int(1, 0)))
                     {
                         RemoveWall((roomX + i) * cellLength, (roomY + j) * cellLength, (roomX + i + 1) * cellLength, (roomY + j) * cellLength);
@@ -208,7 +209,7 @@ public class MazeGenerator : MonoBehaviour
                         cells[roomX + i + 1, roomY + j].AlterDirection(new Vector2Int(-1, 0), true);
                     }
                 }
-                if(j != 2){
+                if (j != 2) {
                     if (!cells[roomX + i, roomY + j].CheckDirection(new Vector2Int(0, 1)))
                     {
                         RemoveWall((roomX + i) * cellLength, (roomY + j) * cellLength, (roomX + i) * cellLength, (roomY + j + 1) * cellLength);
@@ -255,7 +256,7 @@ public class MazeGenerator : MonoBehaviour
     void CarveOutPaths()
     {
         Vector2Int center = new Vector2Int(roomX + 1, roomY + 1);
-        for(int i = 1; i < Mathf.Floor(2 * width / 5); i++)
+        for (int i = 1; i < Mathf.Floor(2 * width / 5); i++)
         {
             if (!cells[center.x + i, center.y].CheckDirection(new Vector2Int(1, 0)))
             {
@@ -322,5 +323,15 @@ public class MazeGenerator : MonoBehaviour
     {
         GameObject sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
         sphere.transform.position = new Vector3(x * cellLength, wallSize / 2, y * cellLength);
+    }
+
+    public List<MazeCell> GetMainNodes()
+    {
+        List<MazeCell> result = new List<MazeCell>();
+        result.Add(cells[roomX + 1, roomY + 1]);
+        result.Add(cells[roomX + 1, Mathf.FloorToInt(height / 5)]);
+        result.Add(cells[Mathf.FloorToInt(width / 5), roomY + 1]);
+        result.Add(cells[Mathf.FloorToInt(4 * width / 5), roomY + 1]);
+        return result;
     }
 }

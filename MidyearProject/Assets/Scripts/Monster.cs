@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -6,8 +5,18 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
+    public MazeGameManager manager;
+    public MazeGenerator generator;
     public float speed = 5f;
     public float waypointThreshold = 0.01f;
+    public MazeCell playerRoom;
+    public MazeCell downHallway;
+    public MazeCell rightHallway;
+    public MazeCell leftHallway;
+    public DirProbabilities currHallway;
+    public float time = 0f;
+    public DirProbabilities[] Hallways = new DirProbabilities[3];
+
     public enum State
     {
         Creeping,
@@ -52,7 +61,7 @@ public class Monster : MonoBehaviour
 
     public Vector3 playerLOS = new Vector3();
 
-    public void UpdatePlayerLOS(Vector3 LOS) => playerLOS = LOS; //The Game Manager will update the player's line of sight (LookingDir global position - Player position)
+    public void UpdatePlayerLOS(Vector3 LOS) => playerLOS = -LOS; //The Game Manager will update the player's line of sight (LookingDir global position - Player position)
     public DirProbabilities FindClosestDir() // Using the playerLOS, this will find the closest direction so we can update the probabilities
     {
         Vector2 xz = new Vector2(playerLOS.x, playerLOS.z);
@@ -68,7 +77,8 @@ public class Monster : MonoBehaviour
             minAngle = Vector2.Angle(xz, new Vector2(-1, 0));
             result = DirProbabilities.Left;
         }
-        if (Vector2.Angle(xz, new Vector2(1, 0)) < minAngle){
+        if (Vector2.Angle(xz, new Vector2(1, 0)) < minAngle)
+        {
             minAngle = Vector2.Angle(xz, new Vector2(1, 0));
             result = DirProbabilities.Right;
         }
@@ -96,14 +106,15 @@ public class Monster : MonoBehaviour
     public State state;
     public TargetType targetType;
     private List<Vector3> worldPath;
-    private int currentIndex = 0;
+    public List<MazeCell> mazeCellPath;
+    public int currentIndex = 0;
     private bool isMoving = false;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        //SetNewTargetToHallway()
+        SetNewTargetToHallway();
     }
 
     void Update()
@@ -114,20 +125,19 @@ public class Monster : MonoBehaviour
             case State.Pathfinding:
                 if (MoveUpdate())
                 {
-                    switch(targetType)
+                    switch (targetType)
                     {
                         default:
                         case TargetType.Hallway:
                             targetType = TargetType.Nook;
-                            //FindNook()
-                            //SetNewTargetToNook()
+                            SetNewTargetToNook(FindNook());
                             break;
                         case TargetType.Nook:
                             state = State.Creeping;
                             break;
                         case TargetType.Escape:
                         case TargetType.Drone:
-                            //SetNewTargetToHallway()
+                            SetNewTargetToHallway();
                             break;
                         case TargetType.Player:
                             state = State.PermanentChase;
@@ -136,11 +146,10 @@ public class Monster : MonoBehaviour
                 }
                 break;
             case State.Creeping:
-                if (StopCreeping()) //make function work later - Markov
+                if (StopCreeping())
                 {
                     state = State.Pathfinding;
-                    //FindNook()
-                    //SetNewTargetToNook()
+                    SetNewTargetToNook(FindNook());
                 }
                 break;
             case State.Escaping:
@@ -182,6 +191,7 @@ public class Monster : MonoBehaviour
 
         currentIndex = 0;
         isMoving = true;
+        mazeCellPath = path;
     }
 
     bool MoveUpdate()
@@ -220,6 +230,129 @@ public class Monster : MonoBehaviour
     }
     bool StopCreeping()
     {
-        return true;
+        time += Time.deltaTime;
+        if (time > 3)
+        {
+            time = 0f;
+            return ReturnProb(currHallway) < Random.value;
+        }
+        return false;
+    }
+
+    public void SetMainNodes(MazeCell room, MazeCell down, MazeCell left, MazeCell right)
+    {
+        playerRoom = room;
+        downHallway = down;
+        leftHallway = left;
+        rightHallway = right;
+        Hallways[0] = DirProbabilities.Down;
+        Hallways[1] = DirProbabilities.Left;
+        Hallways[2] = DirProbabilities.Right;
+    }
+
+    public MazeCell GetNode(DirProbabilities dir)
+    {
+        switch (dir)
+        {
+            default:
+            case DirProbabilities.Down: return downHallway;
+            case DirProbabilities.Left: return leftHallway;
+            case DirProbabilities.Right: return rightHallway;
+        }
+    }
+    void SetNewTargetToHallway()
+    {
+        targetType = TargetType.Hallway;
+        float minProb = 1f;
+        DirProbabilities hallway = DirProbabilities.Up;
+        foreach (DirProbabilities dir in Hallways)
+        {
+            if (ReturnProb(dir) < minProb)
+            {
+                minProb = ReturnProb(dir);
+                hallway = dir;
+            }
+        }
+        currHallway = hallway;
+        MazeCell h = GetNode(currHallway);
+        manager.UpdatePathfinding(new Vector2Int(h.x, h.y));
+    }
+
+    MazeCell FindNook()
+    {
+        targetType = TargetType.Nook;
+        Vector2Int currPos = new Vector2Int(playerRoom.x, mazeCellPath[currentIndex - 1].y);
+        Vector2Int mainDir = Vector2Int.up;
+        bool checkingUp = false;
+        switch (currHallway)
+        {
+            case DirProbabilities.Down:
+            default:
+                break;
+            case DirProbabilities.Left:
+                mainDir = Vector2Int.right;
+                currPos = new Vector2Int(mazeCellPath[currentIndex].x, playerRoom.y);
+                checkingUp = true;
+                break;
+            case DirProbabilities.Right:
+                mainDir = Vector2Int.left;
+                currPos = new Vector2Int(mazeCellPath[currentIndex].x, playerRoom.y);
+                checkingUp = true;
+                break;
+        }
+        bool nookFound = false;
+        currPos += mainDir;
+        MazeCell curr = generator.cells[currPos.x, currPos.y];
+        Debug.Log("Going direction (" + mainDir.x + ", " + mainDir.y + "), and checking up is " + checkingUp);
+        Debug.Log("Current is: (" + curr.x + ", " + curr.y + ")");
+        Debug.Log("Player Room is: (" + playerRoom.x + ", " + playerRoom.y + ")");
+        while (!nookFound && (Mathf.Abs(curr.y - playerRoom.y) > 2 || Mathf.Abs(curr.x - playerRoom.x) > 2))
+        {
+            Debug.Log("Went into loop");
+            if (checkingUp)
+            {
+                Debug.Log("Checking Up and down at (" + curr.x + ", " + curr.y + ")");
+                if(curr.CheckDirection(new Vector2Int(0, 1))){
+                    nookFound = true;
+                    curr = generator.cells[currPos.x, currPos.y + 1];
+                }
+                else if (curr.CheckDirection(new Vector2Int(0, -1)))
+                {
+                    nookFound = true;
+                    curr = generator.cells[currPos.x, currPos.y - 1];
+                }
+            }
+            else
+            {
+                Debug.Log("Checking Right and Left at (" + curr.x + ", " + curr.y + ")");
+                if (curr.CheckDirection(new Vector2Int(1, 0)))
+                {
+                    nookFound = true;
+                    curr = generator.cells[currPos.x + 1, currPos.y];
+                }
+                else if(curr.CheckDirection(new Vector2Int(-1, 0)))
+                {
+                    nookFound = true;
+                    curr = generator.cells[currPos.x -1, currPos.y];
+                }
+            }
+            if (!nookFound)
+            {
+                currPos += mainDir;
+                curr = generator.cells[currPos.x, currPos.y];
+            }
+        }
+        if (!nookFound)
+        {
+            curr = playerRoom;
+            targetType = TargetType.Player;
+        }
+        return curr;
+        
+    }
+
+    void SetNewTargetToNook(MazeCell nook)
+    {
+        manager.UpdatePathfinding(new Vector2Int(nook.x, nook.y));
     }
 }
