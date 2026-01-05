@@ -104,7 +104,7 @@ public class MazeGenerator : MonoBehaviour
         GameObject wall = GameObject.CreatePrimitive(PrimitiveType.Cube);
         wall.transform.position = pos;
         Transform trans = wall.transform;
-        trans.localScale = new Vector3(trans.localScale.x * w, trans.localScale.y, trans.localScale.z * l);
+        trans.localScale = new Vector3(trans.localScale.x * w, trans.localScale.y * wallSize, trans.localScale.z * l);
         wall.transform.localScale = trans.localScale;
         walls.Add(wall);
     }
@@ -200,6 +200,7 @@ public class MazeGenerator : MonoBehaviour
         {
             for (int i = 0; i <= 2; i++)
             {
+                cells[roomX + i, roomY + j].playerRoom = true;
                 //Clear out Center
                 if (i != 2) {
                     if (!cells[roomX + i, roomY + j].CheckDirection(new Vector2Int(1, 0)))

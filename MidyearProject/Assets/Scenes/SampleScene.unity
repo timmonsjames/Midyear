@@ -156,7 +156,7 @@ MonoBehaviour:
   width: 19
   height: 19
   cellLength: 5
-  wallSize: 1
+  wallSize: 5
   walls: []
   startPos: {x: 0, y: 0}
   endPos: {x: 0, y: 0}
@@ -362,7 +362,7 @@ MonoBehaviour:
   playerLOS: {fileID: 1397883941}
   npcPrefab: {fileID: 6096445784217483295, guid: 323e97a82701b624c9b1869458d2e546, type: 3}
   goalPrefab: {fileID: 918107790}
-  pathTilePrefab: {fileID: 4445036890322216743, guid: 08360fb3185a21f4996d40a38c23be0c, type: 3}
+  pathTilePrefab: {fileID: 1117404500686286767, guid: b5da4b56c20008e48b7f368f77df395e, type: 3}
 --- !u!4 &654499984
 Transform:
   m_ObjectHideFlags: 0

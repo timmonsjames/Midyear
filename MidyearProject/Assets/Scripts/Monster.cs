@@ -1,10 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using Unity.VisualScripting;
 using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
+    [SerializeField]
+    float
+        upProb = 0.25f,
+        downProb = 0.25f,
+        leftProb = 0.25f,
+        rightProb = 0.25f;
     public MazeGameManager manager;
     public MazeGenerator generator;
     public float speed = 5f;
@@ -16,6 +23,9 @@ public class Monster : MonoBehaviour
     public DirProbabilities currHallway;
     public float time = 0f;
     public DirProbabilities[] Hallways = new DirProbabilities[3];
+    public Transform playerLocation;
+    Vector3 directionToPlayer = Vector3.zero;
+    float playerLOSResetTime = 0f;
 
     public enum State
     {
@@ -41,12 +51,7 @@ public class Monster : MonoBehaviour
         Right,
         Down
     }
-    [SerializeField]
-    float
-        upProb = 0.25f,
-        downProb = 0.25f,
-        leftProb = 0.25f,
-        rightProb = 0.25f;
+    
     public float ReturnProb(DirProbabilities prob) //Will be able to return the probability of a certain direction, based on the Direction from the Enum
     {
         switch (prob)
@@ -119,6 +124,7 @@ public class Monster : MonoBehaviour
 
     void Update()
     {
+        directionToPlayer = (playerLocation.position - transform.position).normalized;
         switch (state)
         {
             default:
@@ -144,6 +150,13 @@ public class Monster : MonoBehaviour
                             break;
                     }
                 }
+                if (playerIsLooking())
+                {
+                    state = State.Escaping;
+                    speed = 15f;
+                    targetType = TargetType.Escape;
+                    SetNewTargetToRandom();
+                }
                 break;
             case State.Creeping:
                 if (StopCreeping())
@@ -153,12 +166,23 @@ public class Monster : MonoBehaviour
                 }
                 break;
             case State.Escaping:
-                if (true) //<-- Replace with a function that checks if player LOS is lost
+                MoveUpdate();
+                if (!playerIsLooking())
+                    playerLOSResetTime += Time.deltaTime;
+                if(playerLOSResetTime > 2f)
+                {
                     state = State.Pathfinding;
+                    speed = 5f;
+                }
+                if (playerIsLooking())
+                    playerLOSResetTime = 0f;
                 break;
             case State.PermanentChase:
-                // If Player LOS, slow down, if not speed up
-                //SetNewTargetToPlayer()
+                if (playerIsLooking())
+                    speed = 2f;
+                else
+                    speed = 7f;
+                SetNewTargetToPlayer();
                 if (MoveUpdate())
                     state = State.Kill;
                 break;
@@ -166,12 +190,26 @@ public class Monster : MonoBehaviour
                 //Wont have to change states from here.
                 break;
         }
-        if (true) // --> function that checks if player LOS - This will only update the direction probabilties if the monster can see the player
+        if (isPlayerLOS()) // --> function that checks if player LOS - This will only update the direction probabilties if the monster can see the player
         {
             UpdateDir(FindClosestDir());
         }
     }
 
+
+    bool isPlayerLOS()
+    {
+        Ray ray = new Ray(transform.position + Vector3.up * 0.5f, directionToPlayer);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 100f) && hit.transform == playerLocation)
+            return true;
+        return false;
+    }
+
+    bool playerIsLooking()
+    {
+        return Vector3.Angle(-directionToPlayer, playerLOS) < 30 && isPlayerLOS();
+    }
 
     public void SetPath(List<MazeCell> path)
     {
@@ -242,6 +280,7 @@ public class Monster : MonoBehaviour
     public void SetMainNodes(MazeCell room, MazeCell down, MazeCell left, MazeCell right)
     {
         playerRoom = room;
+        room.playerRoom = true;
         downHallway = down;
         leftHallway = left;
         rightHallway = right;
@@ -291,12 +330,12 @@ public class Monster : MonoBehaviour
                 break;
             case DirProbabilities.Left:
                 mainDir = Vector2Int.right;
-                currPos = new Vector2Int(mazeCellPath[currentIndex].x, playerRoom.y);
+                currPos = new Vector2Int(mazeCellPath[currentIndex - 1].x, playerRoom.y);
                 checkingUp = true;
                 break;
             case DirProbabilities.Right:
                 mainDir = Vector2Int.left;
-                currPos = new Vector2Int(mazeCellPath[currentIndex].x, playerRoom.y);
+                currPos = new Vector2Int(mazeCellPath[currentIndex - 1].x, playerRoom.y);
                 checkingUp = true;
                 break;
         }
@@ -354,5 +393,31 @@ public class Monster : MonoBehaviour
     void SetNewTargetToNook(MazeCell nook)
     {
         manager.UpdatePathfinding(new Vector2Int(nook.x, nook.y));
+    }
+
+    void SetNewTargetToRandom()
+    {
+        int w = Random.Range(0, Mathf.FloorToInt(generator.width / 3));
+        int h = Random.Range(0, Mathf.FloorToInt(generator.height / 3));
+        w = Random.Range(0, 1) * (generator.width - 1 - 2 * w) + w;
+        manager.UpdatePathfinding(new Vector2Int(w, h));
+    }
+
+    void SetNewTargetToPlayer()
+    {
+        float edge = (float)generator.cellLength / 2f;
+        int x = 1;
+        int y = 1;
+        while(edge < playerLocation.position.x || edge < playerLocation.position.z)
+        {
+            edge += generator.cellLength;
+            if (edge < playerLocation.position.x)
+                x++;
+            if (edge < playerLocation.position.z)
+                y++;
+        }
+        generator.cells[x, y].playerRoom = true;
+        Debug.Log("Player is at (" + x + ", " + y + ")");
+        manager.UpdatePathfinding(new Vector2Int(x, y));
     }
 }

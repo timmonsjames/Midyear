@@ -57,8 +57,11 @@ public class AStarPathfinder : MonoBehaviour
                 MazeCell neighbor = mazeG.cells[nx, ny];
 
                 // Ignore walls and closed cells
-                if (!current.CheckDirection(dir) || closedSet.Contains(neighbor))
+                if (!current.CheckDirection(dir) || closedSet.Contains(neighbor) || CheckNotPassingByPlayerRoom(neighbor, goal))
                     continue;
+
+                if (CheckNotPassingByHallway(neighbor, goal))
+                    goal = neighbor;
 
                 // Cost from start to neighbor through current (each move cost = 1)
                 int tentativeG = current.gCost + 1;
@@ -114,5 +117,14 @@ public class AStarPathfinder : MonoBehaviour
 
         path.Reverse();
         return path;
+    }
+
+    public bool CheckNotPassingByPlayerRoom(MazeCell n, MazeCell g)
+    {
+        return n.playerRoom && !g.playerRoom;
+    }
+    public bool CheckNotPassingByHallway(MazeCell n, MazeCell g)
+    {
+        return n.path && !g.path;
     }
 }

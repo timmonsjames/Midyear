@@ -50,6 +50,7 @@ public class MazeGameManager : MonoBehaviour
         monster = npcInstance.GetComponent<Monster>();
         monster.manager = this;
         monster.generator = mazeGenerator;
+        monster.playerLocation = player;
         monster.SetPath(path);
         List<MazeCell> mainNodes = mazeGenerator.GetMainNodes();
         monster.SetMainNodes(mainNodes[0], mainNodes[1], mainNodes[2], mainNodes[3]);
