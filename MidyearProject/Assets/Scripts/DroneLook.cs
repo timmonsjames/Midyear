@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DroneLook : MonoBehaviour
 {
-    public float sensitivity = 120f;
+    public float sensitivity = 1000f;
 
     float xRotation = 0f;
 
@@ -18,7 +18,7 @@ public class DroneLook : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime;
 
         xRotation -= mouseY;
-        xRotation = Mathf.Clamp(xRotation, -85f, 85f);
+        xRotation = Mathf.Clamp(xRotation, -5f, 85f);
 
         transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         transform.parent.Rotate(Vector3.up * mouseX);
