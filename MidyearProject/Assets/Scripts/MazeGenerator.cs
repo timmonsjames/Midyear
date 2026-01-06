@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class MazeGenerator : MonoBehaviour
 {
+    public GameObject wallPrefab;
     public GameObject EndCube;
     public GameObject Player;
     public int width;
@@ -101,7 +102,7 @@ public class MazeGenerator : MonoBehaviour
 
     void CreateWall(float w, float l, Vector3 pos)
     {
-        GameObject wall = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        GameObject wall = GameObject.Instantiate(wallPrefab);
         wall.transform.position = pos;
         Transform trans = wall.transform;
         trans.localScale = new Vector3(trans.localScale.x * w, trans.localScale.y * wallSize, trans.localScale.z * l);
