@@ -592,6 +592,7 @@ MonoBehaviour:
   monster: {fileID: 5590044828747155930, guid: 323e97a82701b624c9b1869458d2e546, type: 3}
   player: {fileID: 1671148414}
   playerLOS: {fileID: 1397883941}
+  drone: {fileID: 1491681115}
   npcPrefab: {fileID: 6096445784217483295, guid: 323e97a82701b624c9b1869458d2e546, type: 3}
   goalPrefab: {fileID: 918107790}
   pathTilePrefab: {fileID: 1117404500686286767, guid: b5da4b56c20008e48b7f368f77df395e, type: 3}
@@ -1005,6 +1006,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 6
   controller: {fileID: 1491681117}
+  signal: 0
+  posX: 0
+  posY: 0
 --- !u!4 &1491681116
 Transform:
   m_ObjectHideFlags: 0

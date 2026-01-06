@@ -26,6 +26,7 @@ public class Monster : MonoBehaviour
     public Transform playerLocation;
     Vector3 directionToPlayer = Vector3.zero;
     float playerLOSResetTime = 0f;
+    public DroneMovement drone;
 
     public enum State
     {
@@ -194,6 +195,8 @@ public class Monster : MonoBehaviour
         {
             UpdateDir(FindClosestDir());
         }
+        if (DroneCheck()) // -> Checks to see if the drone has put out a signalss
+            SetNewTargetToDrone();
     }
 
 
@@ -418,6 +421,35 @@ public class Monster : MonoBehaviour
         }
         generator.cells[x, y].playerRoom = true;
         Debug.Log("Player is at (" + x + ", " + y + ")");
+        manager.UpdatePathfinding(new Vector2Int(x, y));
+    }
+
+
+    bool DroneCheck()
+    {
+        if(drone.signal && state != State.PermanentChase && !isPlayerLOS())
+        {
+            drone.signal = false;
+            return true;
+        }
+        return false;
+    }
+    void SetNewTargetToDrone()
+    {
+        state = State.Pathfinding;
+        targetType = TargetType.Drone;
+        float edge = (float)generator.cellLength / 2f;
+        int x = 1;
+        int y = 1;
+        while(edge < drone.posX || edge < drone.posY)
+        {
+            edge += generator.cellLength;
+            if(edge < drone.posX)
+                x++;
+            if(edge < drone.posY)
+                y++;
+        }
+        Debug.Log("Going to drone at (" + x + ", " + y + ")");
         manager.UpdatePathfinding(new Vector2Int(x, y));
     }
 }

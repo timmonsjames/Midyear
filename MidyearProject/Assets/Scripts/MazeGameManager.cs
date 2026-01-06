@@ -15,6 +15,7 @@ public class MazeGameManager : MonoBehaviour
     public Monster monster;
     public Transform player;
     public Transform playerLOS;
+    public DroneMovement drone;
 
     public GameObject npcPrefab;
     public GameObject goalPrefab;
@@ -51,6 +52,7 @@ public class MazeGameManager : MonoBehaviour
         monster.manager = this;
         monster.generator = mazeGenerator;
         monster.playerLocation = player;
+        monster.drone = drone;
         monster.SetPath(path);
         List<MazeCell> mainNodes = mazeGenerator.GetMainNodes();
         monster.SetMainNodes(mainNodes[0], mainNodes[1], mainNodes[2], mainNodes[3]);
