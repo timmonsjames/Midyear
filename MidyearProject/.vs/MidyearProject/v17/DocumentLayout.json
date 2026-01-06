@@ -1,33 +1,49 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\timmo\\MidyearProject\\MidyearProject\\",
+  "WorkspaceRootPath": "C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|C:\\Users\\timmo\\MidyearProject\\MidyearProject\\assets\\scripts\\mazegenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|c:\\users\\supre\\documents\\github\\midyear\\midyearproject\\assets\\scripts\\dronelook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\dronelook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|c:\\users\\supre\\documents\\github\\midyear\\midyearproject\\assets\\scripts\\dronemovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\dronemovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\assets\\scripts\\dronestation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\dronestation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\assets\\scripts\\povmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\povmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\assets\\scripts\\mazegenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mazegenerator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|c:\\users\\timmo\\midyearproject\\midyearproject\\assets\\scripts\\monster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\assets\\scripts\\monster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\monster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|C:\\Users\\timmo\\MidyearProject\\MidyearProject\\assets\\scripts\\npcmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\assets\\scripts\\npcmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\npcmovement.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|C:\\Users\\timmo\\MidyearProject\\MidyearProject\\assets\\scripts\\mazegamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\assets\\scripts\\mazegamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mazegamemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|C:\\Users\\timmo\\MidyearProject\\MidyearProject\\assets\\scripts\\mouselook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\assets\\scripts\\mouselook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mouselook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|C:\\Users\\timmo\\MidyearProject\\MidyearProject\\assets\\scripts\\astarpathfinder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\assets\\scripts\\astarpathfinder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\astarpathfinder.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|C:\\Users\\timmo\\MidyearProject\\MidyearProject\\assets\\scripts\\mazecell.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\assets\\scripts\\mazecell.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{51ADC9A0-B083-0933-3579-A35C9764690F}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\mazecell.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
@@ -42,25 +58,24 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 5,
               "Title": "Monster.cs",
-              "DocumentMoniker": "C:\\Users\\timmo\\MidyearProject\\MidyearProject\\Assets\\Scripts\\Monster.cs",
+              "DocumentMoniker": "C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\Assets\\Scripts\\Monster.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Monster.cs",
-              "ToolTip": "C:\\Users\\timmo\\MidyearProject\\MidyearProject\\Assets\\Scripts\\Monster.cs",
+              "ToolTip": "C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\Assets\\Scripts\\Monster.cs",
               "RelativeToolTip": "Assets\\Scripts\\Monster.cs",
               "ViewState": "AgIAAH0AAAAAAAAAAAAQwKIBAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-17T17:03:39.624Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 7,
               "Title": "MazeGameManager.cs",
-              "DocumentMoniker": "C:\\Users\\timmo\\MidyearProject\\MidyearProject\\Assets\\Scripts\\MazeGameManager.cs",
+              "DocumentMoniker": "C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\Assets\\Scripts\\MazeGameManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\MazeGameManager.cs",
-              "ToolTip": "C:\\Users\\timmo\\MidyearProject\\MidyearProject\\Assets\\Scripts\\MazeGameManager.cs",
+              "ToolTip": "C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\Assets\\Scripts\\MazeGameManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\MazeGameManager.cs",
               "ViewState": "AgIAAFAAAAAAAAAAAAAgwDQAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -70,23 +85,76 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MazeGenerator.cs",
-              "DocumentMoniker": "C:\\Users\\timmo\\MidyearProject\\MidyearProject\\Assets\\Scripts\\MazeGenerator.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\MazeGenerator.cs",
-              "ToolTip": "C:\\Users\\timmo\\MidyearProject\\MidyearProject\\Assets\\Scripts\\MazeGenerator.cs",
-              "RelativeToolTip": "Assets\\Scripts\\MazeGenerator.cs",
-              "ViewState": "AgIAAFoAAAAAAAAAAAAowGYAAAAyAAAAAAAAAA==",
+              "Title": "DroneLook.cs",
+              "DocumentMoniker": "C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\Assets\\Scripts\\DroneLook.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\DroneLook.cs",
+              "ToolTip": "C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\Assets\\Scripts\\DroneLook.cs",
+              "RelativeToolTip": "Assets\\Scripts\\DroneLook.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-17T17:49:41.759Z",
+              "WhenOpened": "2026-01-06T02:21:01.28Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
+              "Title": "DroneMovement.cs",
+              "DocumentMoniker": "C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\Assets\\Scripts\\DroneMovement.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\DroneMovement.cs",
+              "ToolTip": "C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\Assets\\Scripts\\DroneMovement.cs",
+              "RelativeToolTip": "Assets\\Scripts\\DroneMovement.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-06T02:20:33.712Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DroneStation.cs",
+              "DocumentMoniker": "C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\Assets\\Scripts\\DroneStation.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\DroneStation.cs",
+              "ToolTip": "C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\Assets\\Scripts\\DroneStation.cs",
+              "RelativeToolTip": "Assets\\Scripts\\DroneStation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-06T02:15:54.558Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "POVmanager.cs",
+              "DocumentMoniker": "C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\Assets\\Scripts\\POVmanager.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\POVmanager.cs",
+              "ToolTip": "C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\Assets\\Scripts\\POVmanager.cs",
+              "RelativeToolTip": "Assets\\Scripts\\POVmanager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-01-06T02:15:06.946Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MazeGenerator.cs",
+              "DocumentMoniker": "C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\Assets\\Scripts\\MazeGenerator.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\MazeGenerator.cs",
+              "ToolTip": "C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\Assets\\Scripts\\MazeGenerator.cs",
+              "RelativeToolTip": "Assets\\Scripts\\MazeGenerator.cs",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAowGYAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-17T17:49:41.759Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "MazeCell.cs",
-              "DocumentMoniker": "C:\\Users\\timmo\\MidyearProject\\MidyearProject\\Assets\\Scripts\\MazeCell.cs",
+              "DocumentMoniker": "C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\Assets\\Scripts\\MazeCell.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\MazeCell.cs",
-              "ToolTip": "C:\\Users\\timmo\\MidyearProject\\MidyearProject\\Assets\\Scripts\\MazeCell.cs",
+              "ToolTip": "C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\Assets\\Scripts\\MazeCell.cs",
               "RelativeToolTip": "Assets\\Scripts\\MazeCell.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -94,11 +162,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "NPCMovement.cs",
-              "DocumentMoniker": "C:\\Users\\timmo\\MidyearProject\\MidyearProject\\Assets\\Scripts\\NPCMovement.cs",
+              "DocumentMoniker": "C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\Assets\\Scripts\\NPCMovement.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\NPCMovement.cs",
-              "ToolTip": "C:\\Users\\timmo\\MidyearProject\\MidyearProject\\Assets\\Scripts\\NPCMovement.cs",
+              "ToolTip": "C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\Assets\\Scripts\\NPCMovement.cs",
               "RelativeToolTip": "Assets\\Scripts\\NPCMovement.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -106,11 +174,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "MouseLook.cs",
-              "DocumentMoniker": "C:\\Users\\timmo\\MidyearProject\\MidyearProject\\Assets\\Scripts\\MouseLook.cs",
+              "DocumentMoniker": "C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\Assets\\Scripts\\MouseLook.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\MouseLook.cs",
-              "ToolTip": "C:\\Users\\timmo\\MidyearProject\\MidyearProject\\Assets\\Scripts\\MouseLook.cs",
+              "ToolTip": "C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\Assets\\Scripts\\MouseLook.cs",
               "RelativeToolTip": "Assets\\Scripts\\MouseLook.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -118,11 +186,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "AStarPathfinder.cs",
-              "DocumentMoniker": "C:\\Users\\timmo\\MidyearProject\\MidyearProject\\Assets\\Scripts\\AStarPathfinder.cs",
+              "DocumentMoniker": "C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\Assets\\Scripts\\AStarPathfinder.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\AStarPathfinder.cs",
-              "ToolTip": "C:\\Users\\timmo\\MidyearProject\\MidyearProject\\Assets\\Scripts\\AStarPathfinder.cs",
+              "ToolTip": "C:\\Users\\supre\\Documents\\GitHub\\Midyear\\MidyearProject\\Assets\\Scripts\\AStarPathfinder.cs",
               "RelativeToolTip": "Assets\\Scripts\\AStarPathfinder.cs",
               "ViewState": "AgIAAHAAAAAAAAAAAAAkwD4AAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
