@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Xml.Schema;
+using Unity.VisualScripting;
 using UnityEngine;
 
 // Coordinates the whole mini-game:
@@ -10,6 +12,8 @@ using UnityEngine;
 
 public class MazeGameManager : MonoBehaviour
 {
+    public Transform fakePlayerTransform;
+    public GameObject gem;
     public MazeGenerator mazeGenerator;
     public AStarPathfinder pathfinder;
     public Monster monster;
@@ -24,6 +28,12 @@ public class MazeGameManager : MonoBehaviour
     private GameObject npcInstance;
     private GameObject goalInstance;
     private List<GameObject> pathList = new List<GameObject>();
+
+    public void Start()
+    {
+        // BEGIN NIGHTTIME AMBIENCE
+
+    }
 
     public void Func()
     {
@@ -53,6 +63,8 @@ public class MazeGameManager : MonoBehaviour
         monster.generator = mazeGenerator;
         monster.playerLocation = player;
         monster.drone = drone;
+        monster.gem = gem;
+        monster.fakePlayerLocation = fakePlayerTransform;
         monster.SetPath(path);
         List<MazeCell> mainNodes = mazeGenerator.GetMainNodes();
         monster.SetMainNodes(mainNodes[0], mainNodes[1], mainNodes[2], mainNodes[3]);
@@ -84,6 +96,7 @@ public class MazeGameManager : MonoBehaviour
     void Update()
     {
         monster.UpdatePlayerLOS(player.position - playerLOS.position);
+        CheckPlayerWin();
     }
 
     public void UpdatePathfinding(Vector2Int goalPos)
@@ -101,5 +114,13 @@ public class MazeGameManager : MonoBehaviour
         List<MazeCell> path = pathfinder.FindPath();
         monster.SetPath(path);
         VisualizePath(path);
+    }
+    
+    void CheckPlayerWin()
+    {
+        float min = -mazeGenerator.cellLength / 2 - 0.01f;
+        float max = mazeGenerator.cellLength * (mazeGenerator.width + 0.5f) + 0.01f;
+        if (player.transform.position.x < min || player.transform.position.x > max || player.transform.position.z < min || player.transform.position.z > max)
+            max = 80085;   //CALL FUNCTION FOR WIN SCENE && ADD TRUMPET TO WIN SCENE
     }
 }

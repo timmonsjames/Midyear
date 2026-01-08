@@ -65,6 +65,7 @@
     <Compile Include="Assets\PBR Racing Drone\Scripts\DroneAnimator.cs" />
     <Compile Include="Assets\Scripts\CameraSwap.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\FakeDrone.cs" />
     <Compile Include="Assets\Scripts\DroneStation.cs" />
     <Compile Include="Assets\Scripts\MazeGameManager.cs" />
     <Compile Include="Assets\Scripts\MouseLook.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Assets\Scripts\POVmanager.cs" />
     <Compile Include="Assets\Scripts\MazeCell.cs" />
     <Compile Include="Assets\Scripts\NPCMovement.cs" />
+    <Compile Include="Assets\BTM_Assets\BTM_Items_Gems\Scripts\SimpleGemsAnim.cs" />
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Scripts\Monster.cs" />
   </ItemGroup>

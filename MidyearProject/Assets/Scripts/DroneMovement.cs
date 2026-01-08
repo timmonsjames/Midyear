@@ -8,6 +8,7 @@ public class DroneMovement : MonoBehaviour
     public bool signalCooldownStart = false;
     public float signalCooldown = 60f;
     public float time = 0f;
+    public int displayTime = 0;
     public float posX;
     public float posY;
 
@@ -39,5 +40,6 @@ public class DroneMovement : MonoBehaviour
             time = signalCooldown;
         }
         time -= Time.deltaTime;
+        displayTime = Mathf.FloorToInt(time);
     }
 }
