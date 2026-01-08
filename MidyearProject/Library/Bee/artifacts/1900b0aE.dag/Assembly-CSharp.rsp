@@ -359,6 +359,7 @@
 "Assets/Scripts/DroneLook.cs"
 "Assets/Scripts/DroneMovement.cs"
 "Assets/Scripts/DroneStation.cs"
+"Assets/Scripts/MainMenu.cs"
 "Assets/Scripts/MazeCell.cs"
 "Assets/Scripts/MazeGameManager.cs"
 "Assets/Scripts/MazeGenerator.cs"
