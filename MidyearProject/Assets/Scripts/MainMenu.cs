@@ -11,5 +11,14 @@ public class MainMenu : MonoBehaviour {
         Debug.Log("Quit game requested");
         Application.Quit();
     }
+    public GameObject InstructionsPanel;
+    public void ShowInstructions()
+    {
+        InstructionsPanel.SetActive(true);
+    }
+    public void HideInstructions()
+    {
+        InstructionsPanel.SetActive(false);
+    }
 }
     

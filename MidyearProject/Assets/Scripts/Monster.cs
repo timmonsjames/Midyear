@@ -161,6 +161,7 @@ public class Monster : MonoBehaviour
                             break;
                         case TargetType.Nook:
                             state = State.Creeping;                 //CHANGE ANIMATION TO IDLING
+                            speed = 0f;
                             break;
                         case TargetType.Escape:
                         case TargetType.Drone:
@@ -181,10 +182,12 @@ public class Monster : MonoBehaviour
                 }
                 break;
             case State.Creeping:
+                speed = 0f;
                 if (StopCreeping())
                 {
                     state = State.Pathfinding;
                     SetNewTargetToNook(FindNook());                 //CHANGE ANIMATION TO WALKING
+                    speed = walkSpeed;
                 }
                 if (playerIsLooking())
                 {
@@ -208,7 +211,9 @@ public class Monster : MonoBehaviour
                 break;
             case State.PermanentChase:
                 if (playerIsLooking())
+                {
                     speed = walkSpeed - 3;                          //CHANGE ANIMATION TO WALKING
+                }
                 else
                     speed = walkSpeed + 3;                          //CHANGE ANIMATION TO RUNNING
                 SetNewTargetToPlayer();
@@ -216,9 +221,11 @@ public class Monster : MonoBehaviour
                     state = State.Kill;
                 break;
             case State.Kill:
+                speed = 0f;
                 //Wont have to change states from here.             //SET SCENE TO DEATH SCREEN / PLAY AUDIO FOR DEATH (maybe in scene)
                 break;
         }
+        animator.SetFloat("Speed", speed / walkSpeed);
         if (isPlayerLOS() || state == State.Creeping) // --> function that checks if player LOS - This will only update the direction probabilties if the monster can see the player
         {
             UpdateDir(FindClosestDir());
@@ -498,3 +505,4 @@ public class Monster : MonoBehaviour
         animator.Play("run1");
     }
 }
+ 
