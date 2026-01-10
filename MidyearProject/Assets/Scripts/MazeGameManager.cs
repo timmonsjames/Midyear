@@ -121,6 +121,6 @@ public class MazeGameManager : MonoBehaviour
         float min = -mazeGenerator.cellLength / 2 - 0.01f;
         float max = mazeGenerator.cellLength * (mazeGenerator.width + 0.5f) + 0.01f;
         if (player.transform.position.x < min || player.transform.position.x > max || player.transform.position.z < min || player.transform.position.z > max)
-            max = 80085;   //CALL FUNCTION FOR WIN SCENE && ADD TRUMPET TO WIN SCENE
+            Debug.Log("You win!");   //CALL FUNCTION FOR WIN SCENE && ADD TRUMPET TO WIN SCENE
     }
 }

@@ -6,9 +6,8 @@ using UnityEngine;
 
 public class Monster : MonoBehaviour
 {
-    public bool animationIdle = false;
-    public bool animationWalk = true;
-    public bool animationRun = false;
+    float dirMulti = 0.0001f;
+    float creepTime = 10f;
 
     [SerializeField]
     float
@@ -59,7 +58,7 @@ public class Monster : MonoBehaviour
         Right,
         Down
     }
-    
+
     public float ReturnProb(DirProbabilities prob) //Will be able to return the probability of a certain direction, based on the Direction from the Enum
     {
         switch (prob)
@@ -114,8 +113,6 @@ public class Monster : MonoBehaviour
         rightProb /= sumProb;
     }
 
-    float dirMulti = 0.001f;
-
     public State state;
     public TargetType targetType;
     private List<Vector3> worldPath;
@@ -123,14 +120,13 @@ public class Monster : MonoBehaviour
     public int currentIndex = 0;
     private bool isMoving = false;
     public Animator animator;
-
+    public bool permanentChasePain = false;
 
     // Start is called before the first frame update
     void Start()
     {
         SetNewTargetToHallway();
         animator = GetComponent<Animator>();
-        AnimationWalk();
     }
 
     void Update()
@@ -143,12 +139,12 @@ public class Monster : MonoBehaviour
                 if (CheckSpeedUp())
                 {
                     speedUp = true;
-                    speed = 2 * walkSpeed;                          //CHANGE ANIMATION TO RUNNING
+                    speed = 2 * walkSpeed;                        
                 }
                 else if (speedUp)
                 {
                     speedUp = false;
-                    speed = walkSpeed;                              //CHANGE ANIMATION TO WALKING
+                    speed = walkSpeed;                        
                 }
                 if (MoveUpdate())
                 {
@@ -160,7 +156,7 @@ public class Monster : MonoBehaviour
                             SetNewTargetToNook(FindNook());
                             break;
                         case TargetType.Nook:
-                            state = State.Creeping;                 //CHANGE ANIMATION TO IDLING
+                            state = State.Creeping;                 
                             speed = 0f;
                             break;
                         case TargetType.Escape:
@@ -169,15 +165,15 @@ public class Monster : MonoBehaviour
                             break;
                         case TargetType.Player:
                             gem.SetActive(false);
-                            state = State.PermanentChase;           //CHANGE ANIMATION TO RUNNING && PLAY SCREECH AUDIO
+                            state = State.PermanentChase;           //PLAY SCREECH AUDIO
                             break;
                     }
                 }
                 if (playerIsLooking())
                 {
                     state = State.Escaping;
-                    speed = 3 *walkSpeed;
-                    targetType = TargetType.Escape;                 //CHANGE ANIMATION TO RUNNING && PLAY PAIN AUDIO
+                    speed = 3 * walkSpeed;
+                    targetType = TargetType.Escape;                 //PLAY PAIN AUDIO
                     SetNewTargetToRandom();
                 }
                 break;
@@ -186,7 +182,7 @@ public class Monster : MonoBehaviour
                 if (StopCreeping())
                 {
                     state = State.Pathfinding;
-                    SetNewTargetToNook(FindNook());                 //CHANGE ANIMATION TO WALKING
+                    SetNewTargetToNook(FindNook());                 
                     speed = walkSpeed;
                 }
                 if (playerIsLooking())
@@ -194,17 +190,17 @@ public class Monster : MonoBehaviour
                     state = State.Escaping;
                     speed = 3 * walkSpeed;
                     targetType = TargetType.Escape;
-                    SetNewTargetToRandom();                         //CHANGE ANIMATION TO RUNNING && PLAY PAIN AUDIO
+                    SetNewTargetToRandom();                         //PLAY PAIN AUDIO
                 }
                 break;
             case State.Escaping:
                 MoveUpdate();
                 if (!playerIsLooking())
                     playerLOSResetTime += Time.deltaTime;
-                if(playerLOSResetTime > 2f)
+                if (playerLOSResetTime > 2f)
                 {
                     state = State.Pathfinding;
-                    speed = walkSpeed;                              //CHANGE ANIMATION TO WALKING
+                    speed = walkSpeed;                              
                 }
                 if (playerIsLooking())
                     playerLOSResetTime = 0f;
@@ -212,21 +208,28 @@ public class Monster : MonoBehaviour
             case State.PermanentChase:
                 if (playerIsLooking())
                 {
-                    speed = walkSpeed - 3;                          //CHANGE ANIMATION TO WALKING
+                    if (!permanentChasePain)
+                    {
+                        permanentChasePain = true;                  //PLAY PAIN AUDIO
+                    }
+                    speed = walkSpeed - 3;                          
                 }
                 else
-                    speed = walkSpeed + 3;                          //CHANGE ANIMATION TO RUNNING
+                {
+                    speed = walkSpeed + 3;
+                    permanentChasePain = false;
+                }
                 SetNewTargetToPlayer();
                 if (MoveUpdate())
                     state = State.Kill;
                 break;
             case State.Kill:
                 speed = 0f;
-                //Wont have to change states from here.             //SET SCENE TO DEATH SCREEN / PLAY AUDIO FOR DEATH (maybe in scene)
+                Debug.Log("You lose");             //SET SCENE TO DEATH SCREEN / PLAY AUDIO FOR DEATH (maybe in scene)
                 break;
         }
         animator.SetFloat("Speed", speed / walkSpeed);
-        if (isPlayerLOS() || state == State.Creeping) // --> function that checks if player LOS - This will only update the direction probabilties if the monster can see the player
+        if (isPlayerLOS() || state == State.Creeping || targetType == TargetType.Nook) // --> function that checks if player LOS - This will only update the direction probabilties if the monster can see the player
         {
             UpdateDir(FindClosestDir());
         }
@@ -308,7 +311,7 @@ public class Monster : MonoBehaviour
     bool StopCreeping()
     {
         time += Time.deltaTime;
-        if (time > 3)
+        if (time > creepTime)
         {
             time = 0f;
             return ReturnProb(currHallway) < Random.value;
@@ -390,7 +393,8 @@ public class Monster : MonoBehaviour
             if (checkingUp)
             {
                 Debug.Log("Checking Up and down at (" + curr.x + ", " + curr.y + ")");
-                if(curr.CheckDirection(new Vector2Int(0, 1))){
+                if (curr.CheckDirection(new Vector2Int(0, 1)))
+                {
                     nookFound = true;
                     curr = generator.cells[currPos.x, currPos.y + 1];
                 }
@@ -408,10 +412,10 @@ public class Monster : MonoBehaviour
                     nookFound = true;
                     curr = generator.cells[currPos.x + 1, currPos.y];
                 }
-                else if(curr.CheckDirection(new Vector2Int(-1, 0)))
+                else if (curr.CheckDirection(new Vector2Int(-1, 0)))
                 {
                     nookFound = true;
-                    curr = generator.cells[currPos.x -1, currPos.y];
+                    curr = generator.cells[currPos.x - 1, currPos.y];
                 }
             }
             if (!nookFound)
@@ -426,7 +430,7 @@ public class Monster : MonoBehaviour
             targetType = TargetType.Player;
         }
         return curr;
-        
+
     }
 
     void SetNewTargetToNook(MazeCell nook)
@@ -447,7 +451,7 @@ public class Monster : MonoBehaviour
         float edge = (float)generator.cellLength / 2f;
         int x = 1;
         int y = 1;
-        while(edge < playerLocation.position.x || edge < playerLocation.position.z)
+        while (edge < playerLocation.position.x || edge < playerLocation.position.z)
         {
             edge += generator.cellLength;
             if (edge < playerLocation.position.x)
@@ -462,7 +466,7 @@ public class Monster : MonoBehaviour
 
     bool DroneCheck()
     {
-        if(drone.signal && state != State.PermanentChase && !isPlayerLOS())
+        if (drone.signal && state != State.PermanentChase && !isPlayerLOS())
         {
             drone.signal = false;
             return true;
@@ -476,12 +480,12 @@ public class Monster : MonoBehaviour
         float edge = (float)generator.cellLength / 2f;
         int x = 1;
         int y = 1;
-        while(edge < drone.posX || edge < drone.posY)
+        while (edge < drone.posX || edge < drone.posY)
         {
             edge += generator.cellLength;
-            if(edge < drone.posX)
+            if (edge < drone.posX)
                 x++;
-            if(edge < drone.posY)
+            if (edge < drone.posY)
                 y++;
         }
         Debug.Log("Going to drone at (" + x + ", " + y + ")");
@@ -490,19 +494,6 @@ public class Monster : MonoBehaviour
     bool CheckSpeedUp()
     {
         return mazeCellPath.Count > 30 && currentIndex < mazeCellPath.Count - 30;
-    }
-
-    void AnimationWalk()
-    {
-        animator.Play("walk2");
-    }
-    void AnimationIdle()
-    {
-        animator.Play("idle1");
-    }
-    void AnimationRun()
-    {
-        animator.Play("run1");
     }
 }
  
