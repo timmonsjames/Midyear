@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Xml.Schema;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // Coordinates the whole mini-game:
 // 1. Generates maze
@@ -28,6 +29,7 @@ public class MazeGameManager : MonoBehaviour
     private GameObject npcInstance;
     private GameObject goalInstance;
     private List<GameObject> pathList = new List<GameObject>();
+    private bool mazeReady = false;
 
     public void Start()
     {
@@ -96,6 +98,13 @@ public class MazeGameManager : MonoBehaviour
     void Update()
     {
         monster.UpdatePlayerLOS(player.position - playerLOS.position);
+        if (!mazeReady) return;
+
+        if (monster != null)
+        {
+            monster.UpdatePlayerLOS(player.position - playerLOS.position);
+        }
+
         CheckPlayerWin();
     }
 
@@ -121,6 +130,14 @@ public class MazeGameManager : MonoBehaviour
         float min = -mazeGenerator.cellLength / 2 - 0.01f;
         float max = mazeGenerator.cellLength * (mazeGenerator.width + 0.5f) + 0.01f;
         if (player.transform.position.x < min || player.transform.position.x > max || player.transform.position.z < min || player.transform.position.z > max)
-            Debug.Log("You win!");   //CALL FUNCTION FOR WIN SCENE && ADD TRUMPET TO WIN SCENE
+        {
+            Debug.Log("You win!");
+            SceneManager.LoadScene("WinScreen");    //CALL FUNCTION FOR WIN SCENE && ADD TRUMPET AUDIO TO WIN SCENE
+        }
+    }
+
+    public void OnMazeReady()
+    {
+        mazeReady = true;
     }
 }

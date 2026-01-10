@@ -39,6 +39,7 @@ public class MazeGenerator : MonoBehaviour
         }
         GenerateMaze();
         gameManager.Func();
+        gameManager.OnMazeReady();
     }
 
     // Update is called once per frame

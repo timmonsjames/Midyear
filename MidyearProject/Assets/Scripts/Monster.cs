@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Monster : MonoBehaviour
 {
@@ -225,7 +226,8 @@ public class Monster : MonoBehaviour
                 break;
             case State.Kill:
                 speed = 0f;
-                Debug.Log("You lose");             //SET SCENE TO DEATH SCREEN / PLAY AUDIO FOR DEATH (maybe in scene)
+                Debug.Log("You lose");
+                SceneManager.LoadScene("EndScreen");    //SET SCENE TO DEATH SCREEN / PLAY AUDIO FOR DEATH (maybe in scene)
                 break;
         }
         animator.SetFloat("Speed", speed / walkSpeed);

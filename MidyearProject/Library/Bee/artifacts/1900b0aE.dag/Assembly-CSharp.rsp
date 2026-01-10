@@ -398,6 +398,7 @@
 "Assets/Scripts/DroneLook.cs"
 "Assets/Scripts/DroneMovement.cs"
 "Assets/Scripts/DroneStation.cs"
+"Assets/Scripts/EndScreen.cs"
 "Assets/Scripts/FakeDrone.cs"
 "Assets/Scripts/MainMenu.cs"
 "Assets/Scripts/MazeCell.cs"
@@ -409,6 +410,7 @@
 "Assets/Scripts/PlayerCam.cs"
 "Assets/Scripts/PlayerMovement.cs"
 "Assets/Scripts/POVmanager.cs"
+"Assets/Scripts/WinScreen.cs"
 -langversion:9.0
 /deterministic
 /optimize+
