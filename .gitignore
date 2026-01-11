@@ -1,0 +1,7 @@
+*.cs
+/MidyearProject/Library/PackageCache/com.unity.visualscripting@1.9.4/Runtime/VisualScripting.Core/Dependencies/FullSerializer/Reflection
+/MidyearProject/Library/PackageCache/com.unity.visualscripting@1.9.4/Runtime/VisualScripting.Core/Dependencies/FullSerializer
+*.meta
+/MidyearProject
+/MidyearProject/Library/ShaderCache/shader/TMP_SDF-Mobilefe39/03
+/MidyearProject/Library
